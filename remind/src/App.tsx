@@ -24,7 +24,7 @@ function App() {
           <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
         </a>
         <a href="https://reactjs.org" target="_blank">
-         // <img src={reactLogo} className="logo react" alt="React logo" />
+         reactLogo
         </a>
       </div>
       <p>Click on the Tauri, Vite, and React logos to learn more.</p>
