@@ -38,7 +38,7 @@ jobs:
           yarn install # change this to npm or pnpm depending on which one you use
           yarn add react react-dom @types/react @types/react-dom @tauri-apps/api
       - name: build frontend
-        run: yarn install && yarn build
+        run: ls && cd /remind && yarn build
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
