@@ -39,7 +39,7 @@ jobs:
           cd ./remind/ && yarn install # change this to npm or pnpm depending on which one you use
           yarn add react react-dom @types/react @types/react-dom @tauri-apps/api
       - name: build frontend
-        run: ls && cd ./remind/ && cat package.json && yarn install && yarn build
+        run: cd ./remind/ && yarn install && yarn build
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -49,3 +49,4 @@ jobs:
           releaseBody: 'See the assets to download this version and install.'
           releaseDraft: true
           prerelease: false
+          args: --target portable
