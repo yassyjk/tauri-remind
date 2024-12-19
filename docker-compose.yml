@@ -8,14 +8,14 @@ services:
     tty: true
     # command: /bin/sh -c "yarn install && apt install -y libwebkit2gtk-4.1-dev  && yarn tauri dev"
     # command: /bin/sh -c "yarn install  && yarn dev"
-    # command: /bin/sh -c "yarn install  && yarn tauri dev"
+    command: /bin/sh -c "yarn install  && yarn tauri dev"
     environment:
       # ホストのディスプレイ設定をコンテナに渡す
       # windows
       - DISPLAY=$DISPLAY
+      - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
       # mac
       # - DISPLAY=host.docker.internal:0
-      # - WAYLAND_DISPLAY=$WAYLAND_DISPLAY
       # XDGランタイムディレクトリを設定
       - XDG_RUNTIME_DIR=/tmp
       # PulseAudioサーバーの設定を渡す
@@ -37,10 +37,10 @@ services:
       - "1420:1420"
       - "3000:3000"
       - "8080:8080"
-      # Waylandソケットをマウント（Waylandでのディスプレイ用）
-      # - type: bind
-      #   source: "${XDG_RUNTIME_DIR}/wayland-0"
-      #   target: /tmp/wayland-0
+      # windows Waylandソケットをマウント（Waylandでのディスプレイ用）
+      - type: bind
+        source: "${XDG_RUNTIME_DIR}/wayland-0"
+        target: /tmp/wayland-0
 
   # app:
   #   build:
