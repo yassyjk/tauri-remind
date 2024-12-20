@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "identifier": "com.remind-app.app",
   "build": {
-    "beforeDevCommand": "yarn dev -- --host",
+    "beforeDevCommand": "yarn dev --host",
     "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "yarn build",
     "frontendDist": "../dist"
