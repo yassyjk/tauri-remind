@@ -11,10 +11,16 @@ services:
     # command: /bin/sh -c "yarn install  && yarn tauri dev"
     # command: /bin/sh -c "yarn install  && yarn tauri android init && yarn tauri android build"
     # command: /bin/sh -c "export PATH=/root/Android/SDK/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH"
+
+    # android
+    # command: /bin/sh -c "rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android && yarn install && yarn tauri android init && yarn tauri android build"
+
     environment:
       # Android
       - ANDROID_HOME=/root/Android/SDK
-      - NDK_HOME=/root/Android/SDK/ndk-bundle
+      - NDK_HOME=/root/Android/SDK/ndk/25.2.9519653
+      # - JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+      - JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
       # - PATH="/root/Android/SDK/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin:${PATH}"
       # ホストのディスプレイ設定をコンテナに渡す
       # windows
@@ -32,6 +38,7 @@ services:
     volumes:
       - ./remind:/app
       - $HOME/Android/SDK:/root/Android/SDK
+      # - /usr/lib/jvm/java-21-openjdk-amd64:/usr/lib/jvm/java-21-openjdk-amd64
       # X11ソケットをマウント（X11でのGUI表示用）
       - type: bind
         # windows
