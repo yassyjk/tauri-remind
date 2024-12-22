@@ -35,8 +35,9 @@ jobs:
         run: |
           echo $ANDROID_SDK_ROOT
           ls $ANDROID_SDK_ROOT/ndk
-          echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk" >> $GITHUB_ENV
-          echo "$ANDROID_SDK_ROOT/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
+          echo "ANDROID_NDK_HOME=$ANDROID_SDK_ROOT/ndk/26.3.11579264" >> $GITHUB_ENV
+          echo "NDK_HOME=$ANDROID_SDK_ROOT/ndk/26.3.11579264" >> $GITHUB_ENV
+          echo "$ANDROID_SDK_ROOT/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
       - run: npm install -g typescript
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
