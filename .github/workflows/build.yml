@@ -65,8 +65,9 @@ jobs:
       - name: Copy APK to workspace
         if: matrix.platform == 'ubuntu-22.04'
         run: |
-          ls ~/
+          pwd
           cp /home/runner/work/tauri-remind/tauri-remind/remind/src-tauri/gen/android/app/build/outputs/apk/universal/release/*.apk .
+          ls -la
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -74,8 +75,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: app-v__VERSION__ # the action automatically replaces \_\_VERSION\_\_ with the app version
-          release_name: 'App v__VERSION__'
+          tag_name: app-v-android # the action automatically replaces \_\_VERSION\_\_ with the app version
+          release_name: 'App v-android'
           body: 'See the assets to download this version and install.'
           draft: true
           prerelease: false
