@@ -32,6 +32,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
       - name: Setup Android NDK
+        if: matrix.platform == 'ubuntu-22.04'
         run: |
           echo $ANDROID_SDK_ROOT
           ls $ANDROID_SDK_ROOT/ndk
@@ -52,14 +53,18 @@ jobs:
           cd ./remind/ && yarn install # change this to npm or pnpm depending on which one you use
           yarn add react react-dom @types/react @types/react-dom @tauri-apps/api
       - name: initialize Tauri Android
+        if: matrix.platform == 'ubuntu-22.04'
         run: |
           rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
           cd ./remind/ && yarn tauri android init
       - name: build Tauri Android
+        if: matrix.platform == 'ubuntu-22.04'
         run: cd ./remind/ && yarn tauri android build
       - name: Copy APK to workspace
+        if: matrix.platform == 'ubuntu-22.04'
         run: cp ./src-tauri/gen/android/app/build/outputs/apk/universal/release/*.apk .
       - uses: actions/create-release@v1
+        if: matrix.platform == 'ubuntu-22.04'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -69,6 +74,7 @@ jobs:
           releaseDraft: true
           prerelease: false
       - name: Upload APK
+        if: matrix.platform == 'ubuntu-22.04'
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
