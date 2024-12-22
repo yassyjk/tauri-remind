@@ -25,11 +25,13 @@ jobs:
         with:
           node-version: 20
       - name: Set up JDK 17
+        if: matrix.platform == 'ubuntu-22.04'
         uses: actions/setup-java@v3
         with: 
           java-version: '17'
           distribution: 'temurin'
       - name: Setup Android SDK
+        if: matrix.platform == 'ubuntu-22.04'
         uses: android-actions/setup-android@v3
       - name: Setup Android NDK
         if: matrix.platform == 'ubuntu-22.04'
