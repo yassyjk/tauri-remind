@@ -47,9 +47,9 @@ jobs:
       - name: initialize Tauri Android
         run: |
           rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
-          yarn tauri android init
+          cd ./remind/ && yarn tauri android init
       - name: build Tauri Android
-        run: yarn tauri android build
+        run: cd ./remind/ && yarn tauri android build
       - name: Copy APK to workspace
         run: cp ./src-tauri/gen/android/app/build/outputs/apk/universal/release/*.apk .
       - uses: actions/create-release@v1
@@ -71,7 +71,7 @@ jobs:
           asset_name: app-universal-release-unsigned.apk
           asset_content_type: application/vnd.android.package-archive
       - name: build frontend
-        run: yarn build
+        run: ls && cd ./remind/ && cat package.json && yarn install && yarn build
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
