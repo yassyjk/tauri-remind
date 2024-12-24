@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
+import { useState, useEffect } from "react";
+// import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
 import "./style.css";
@@ -21,7 +21,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await invoke("get_data");
+      const response: Data[] = await invoke("get_data");
       setData(response);
     } catch(error){
       console.error(error);
