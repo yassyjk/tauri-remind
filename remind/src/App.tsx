@@ -4,8 +4,15 @@ import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
 import "./style.css";
 
-async function App() {
-  const [data, setData] = useState<string[] | null>([]);
+interface Data {
+  id: number;
+  name: string;
+  email: string;
+  API: string;
+}
+
+function App() {
+  const [data, setData] = useState<Data[]>([]);
 
 
   useEffect(() => {
@@ -20,27 +27,40 @@ async function App() {
       console.error(error);
     }
   }
+
+  useEffect(() => {
+    if (data.length === 0) {
+      const mockData = [
+        {id: 1, name: "Taro", email: "taro@taro", API: "https://api.github.com/users/tauri-apps"},
+        {id: 2, name: "Jiro", email: "jiro@jiro", API: "https://api.github.com/users/tauri-apps"},
+      ];
+      setData(mockData);
+    }
+  }, []);
   
   return (
     <main className="container">
       <h1>Welcome to Tauri + React + Sqlite</h1>
 
       <table>
-        <tr>
-          <th>id</th>
-          <th>name</th>
-          <th>email</th>
-          <th>API</th>
-        </tr>
-        {data.map((item)=> {
+        <thead>
           <tr>
-              <td>{item.id}</td>
-              <td>{item.name}</td>
-              <td>{item.email}</td>
-              <td>{item.API}</td>
+            <th>id</th>
+            <th>name</th>
+            <th>email</th>
+            <th>API</th>
           </tr>
-        })}
-        
+        </thead>
+        <tbody>
+          {data.map((item)=> (
+            <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.email}</td>
+                <td>{item.API}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </main>
   );
